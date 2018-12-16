@@ -1,0 +1,12 @@
+a.link-dotted {
+	text-decoration-line: underline;
+	text-decoration-style: dotted;
+}
+
+.bg-almost {
+	background-color: #cfff00;
+}
+
+.textToSpeech {
+	cursor: pointer;
+}

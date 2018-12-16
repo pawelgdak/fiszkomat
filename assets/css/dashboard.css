@@ -1,0 +1,292 @@
+body {
+  font-size: .875rem;
+}
+
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 0;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 48px; /* Height of navbar */
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #999;
+}
+
+a.active {
+  color: #519D9E !important;
+}
+
+.sidebar li.active {
+  color: #58C9B9 !important;
+  border-left: 4px solid #58C9B9;
+}
+
+.nav-link {
+  padding: .3rem 1rem;
+}
+
+.sidebar a.active {
+  color: #58C9B9 !important;
+  position: relative;
+  left: -4px;
+}
+
+.active {
+  color: #519D9E !important;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar-brand {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: 1rem;
+  background-color: #519D9E;
+  box-shadow: inset -1px 0 0 rgba(74, 121, 82, 0.25);;
+}
+
+.navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.navbar {
+  border-top: 3px solid #D1B6E1;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+}
+
+.burger-menu-icon {
+  display: none;
+}
+
+nav.mobile-nav {
+  display: none;
+}
+
+/*
+ * Utilities
+ */
+
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+/*
+* Dropdown
+*/
+
+.img-flag {
+  height: 10px;
+  width: 20px;
+}
+
+/*
+* Links
+*/
+
+a.category-name {
+  color: rgb(33, 37, 41);
+}
+
+a.category-edit-link {
+  color: rgb(33, 37, 41);
+}
+
+/*
+* Edit
+*/
+
+.edit-cat-name {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  cursor: pointer;
+}
+
+.edit-cat-name:hover {
+  color: #519D9E;
+}
+
+.input-edit {
+  border: 0;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  width:100%;
+}
+
+.input-edit:focus {
+  outline: none;
+}
+
+/* 
+* Textarea
+*/
+
+.textarea-edit {
+  cursor: pointer;
+  width: 100%;
+}
+
+.edit-element-child {
+  cursor: pointer;
+}
+
+div.flex {
+  display: flex;
+}
+
+/*
+* Random
+*/
+
+.fiszki-przerwa {
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.jedna-fiszka {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.additional-notes {
+  margin-top:5px;
+}
+
+.menu-item {
+  color: #999 !important;
+}
+
+.menu-item:hover {
+  color: #333 !important;
+}
+
+.active.menu-item:hover {
+  color: #519D9E !important;
+}
+
+.menu-item-text {
+  color: #333;
+}
+
+#naukaModal .modal-dialog,
+#naukaModal .modal-content {
+    /* 80% of window height */
+    height: 60vh;
+}
+
+#naukaModal .modal-body {
+    /* 100% = dialog height, 120px = header + footer */
+    max-height: calc(100% - 120px);
+    overflow-y: auto;
+}
+
+.profile-things {
+  padding-left: 24px;
+  width: 100%;
+  margin-bottom: 0;
+  color: white;
+}
+
+.lang-image {  
+    float: right;
+    margin-right: 25px;
+}
+
+.bg-main {
+  background: #519d9e; /* Old browsers */
+background: -moz-linear-gradient(left, #519d9e 0%, #58c9b9 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left, #519d9e 0%,#58c9b9 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right, #519d9e 0%,#58c9b9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#519d9e', endColorstr='#58c9b9',GradientType=1 ); /* IE6-9 */
+}
+
+/* New Colors */
+
+.btn-secondary, .badge-secondary {
+  color: white !important;
+}
+
+::selection {
+
+  background: #519d9e;
+  color: white;
+
+}
+
+.fiszki-kategorie li .badge{
+  width: 90px;
+}
+
+.nauka-progress {
+  width: 30%;
+}
+
+#nauka-main {
+  height: 100%;
+}
+
+.nauka-slowka {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.nauka-slowka h1 {
+  width: 100%;
+}
