@@ -26,17 +26,18 @@ class Menu_Element {
 
           <?php $this->showFlaschards(); ?>
 
-        </ul>            
+        </ul>
       </div>
     </nav>
 
-    <nav class="mobile-nav animated fadeOut" id="overlay">
+    <nav class="mobile-nav">
 
-        <ul class="nav flex-column">
+        <ul class="nav">
 
           <?php $this->showItems(true); ?>
 
         </ul>
+
     </nav>
 
 		<?php
@@ -79,11 +80,11 @@ class Menu_Element {
 
           <?php
 
-        } 
+        }
 
         ?>
 
-          
+
 
         <?php
 
@@ -106,8 +107,11 @@ class Menu_Element {
 
       <li class="nav-item<?php echo $active; ?>">
         <a class="menu-item nav-link<?php echo $active; ?>" href="<?php echo Config::get('Locations/Home'); ?>/<?php echo $controller . $action; ?>">
-          <?php if(!$mobile) { ?><i style="margin-right: 5px;" class="fas fa-<?php echo $item['icon']; ?> fa-fw"></i><?php }; ?>
+          <?php if(!$mobile) { ?><i style="margin-right: 5px;" class="fas fa-<?php echo $item['icon']; ?> fa-fw"></i>
           <span class="menu-item-text"><?php echo $item['text']; ?></span>
+          <?php } else { ?>
+            <i style="margin-right: 5px;" class="fas fa-<?php echo $item['icon']; ?> fa-fw"></i>
+          <?php } ?>
         </a>
       </li>
 

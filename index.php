@@ -13,7 +13,7 @@ if(!isset($_SESSION['logged'])) {
 			$sth -> execute(array(':cookie_hash' => $hash));
 			$row = $sth->fetch(PDO::FETCH_ASSOC);
 
-			if(isset($row) && is_numeric($row['id'])) { 				
+			if(isset($row) && is_numeric($row['id'])) {
 
 				MyAccount::LoggedIn($row['email'], $row['id'], false, true);
 
@@ -25,7 +25,7 @@ if(!isset($_SESSION['logged'])) {
 
 }
 
-$error = new Error();
+$error = new ErrorClass();
 
 if(Config::get('Site/maintance')) {
 	if(@$_SESSION['user_type'] != 5) {
@@ -36,7 +36,7 @@ if(Config::get('Site/maintance')) {
 }
 
 if(isset($_SESSION['logged'])) {
-					
+
 	isset($_GET['c']) ? $page = $_GET['c'] : $page = 'indexLI';
 	Nauka::checkIfStudied();
 

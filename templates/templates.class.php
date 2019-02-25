@@ -135,8 +135,40 @@ class Template {
 
 			<!-- Meta tags -->
 			<meta charset="utf-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
 			<meta name="viewport" content="width=device-width, user-scalable=no" />
+
+			<!-- PWA -->
+			<meta name="apple-mobile-web-app-capable" content="yes" />
+			<link rel="apple-touch-icon" href="/favicon.ico">
+			<link href="/favicon.ico" rel="apple-touch-startup-image" />
+			<meta name="apple-mobile-web-app-status-bar-style" content="default">
+			<meta name="apple-mobile-web-app-title" content="Fiszkomat">
+			<script type="text/javascript">
+			// Mobile Safari in standalone mode
+			if(("standalone" in window.navigator) && window.navigator.standalone){
+
+			// If you want to prevent remote links in standalone web apps opening Mobile Safari, change 'remotes' to true
+			var noddy, remotes = false;
+
+			document.addEventListener('click', function(event) {
+
+				noddy = event.target;
+
+				// Bubble up until we hit link or top HTML element. Warning: BODY element is not compulsory so better to stop on HTML
+				while(noddy.nodeName !== "A" && noddy.nodeName !== "HTML") {
+					noddy = noddy.parentNode;
+				}
+
+				if('href' in noddy && noddy.href.indexOf('http') !== -1 && (noddy.href.indexOf(document.location.host) !== -1 || remotes))
+				{
+					event.preventDefault();
+					document.location.href = noddy.href;
+				}
+
+			},false);
+			}
+			</script>
 
 		</head>
 		<body class="<?php echo $this->bodyClass; ?>">
@@ -144,7 +176,7 @@ class Template {
 		<?php
 
 	}
-	
+
 	public function HtmlEnd() {
 
 		foreach($this -> jsArr as $js) {
@@ -160,21 +192,14 @@ class Template {
 		</html>
 
 		<?php
-		
+
 	}
 
 	public function CreatedBy_Html() {
 
 		return '
 
-<!--		Created by:
-			  ____               _   ____                 
-			 |  _ \  __      __ | | |  _ \    ___  __   __
-			 | |_) | \ \ /\ / / | | | | | |  / _ \ \ \ / /
-			 |  __/   \ V  V /  | | | |_| | |  __/  \ V / 
-			 |_|       \_/\_/   |_| |____/   \___|   \_/  
-                                             				.pl
--->
+		<!-- Created by pawelgdak.pl -->
 		';
 
 	}

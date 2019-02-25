@@ -76,7 +76,7 @@ class Main_Action {
 
 		  <a href="#" id="random-study" class="list-group-item list-group-item-action flex-column align-items-start">
 		    <div class="d-flex w-100 justify-content-between">
-		      <h5 class="mb-1">Nauka losowych słówek.</h5> <small class="animated infinite pulse" style="color:red">NOWOŚĆ</small>
+		      <h5 class="mb-1">Nauka losowych słówek.</h5>
 		    </div>
 		    <p class="mb-1">Powtórz wybraną ilość losowych słówek.</p>
 		  </a>
@@ -105,7 +105,7 @@ class Main_Action {
 						<div class="form-group mt-2">
 							<input id="random-count" type="number" placeholder="Np. 20" class="form-control" required>
 						</div>
-						
+
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
