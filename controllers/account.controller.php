@@ -2,7 +2,7 @@
 
 class Account_Controller extends Template {
 
-	public function getTemplate() {
+	public function getTemplate($temp = 'Def') {
 		return parent::getTemplate('Account');
 	}
 

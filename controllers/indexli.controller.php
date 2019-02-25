@@ -2,7 +2,7 @@
 
 class IndexLI_Controller extends Template {
 
-	public function getTemplate() {
+	public function getTemplate($temp = 'Def') {
 		return parent::getTemplate('Dashboard');
 	}
 
@@ -21,12 +21,12 @@ class IndexLI_Controller extends Template {
 
 		?>
 
-		Zalogowany jako 
+		Zalogowany jako
 
 		<?php
 
 		echo $_SESSION['user'];
-	
+
 
 	}
 

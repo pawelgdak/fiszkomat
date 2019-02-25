@@ -2,7 +2,7 @@
 
 class Jezyk_Controller extends Template {
 
-	public function getTemplate() {
+	public function getTemplate($temp = 'Def') {
 		return parent::getTemplate('Dashboard');
 	}
 
@@ -14,7 +14,7 @@ class Jezyk_Controller extends Template {
 
 		Render::Element('Title', array('title'=>'Język'));
 
-		?>	
+		?>
 
 		<p>Wybierz język, którego chcesz się uczyć</p>
 
@@ -23,5 +23,5 @@ class Jezyk_Controller extends Template {
 		Render::Element('Language');
 
 	}
-	
+
 }

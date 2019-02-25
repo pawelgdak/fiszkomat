@@ -7,8 +7,8 @@ class Fiszkomat {
 		isset($_GET['a']) ? $action = $_GET['a'] : $action = 'Main';
 		$fileDir = Config::get('Directories/Controllers') . $page . '.controller.php';
 
-        $error = new Error();
-        
+        $error = new ErrorClass();
+
 		if(file_exists(strtolower($fileDir))) {
 
 			require(strtolower($fileDir));
