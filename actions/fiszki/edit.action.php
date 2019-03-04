@@ -1,15 +1,15 @@
 <?php
 
 class Edit_Action {
-	
+
 	public function Edit() {
 
 		if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['edit_ticket'] == "true") {
-	      
+
 	      $this->Process();
-	      
+
 	    }
-		
+
 		$db = new DB();
 		if(!$db->checkIfOwner('categories', $_GET['id'], $_SESSION['user_id'])) {
 			Header::Home();
@@ -19,24 +19,24 @@ class Edit_Action {
 		$words = $db->select('id, first, second, description', 'words', 'cat_id=:cat', array(':cat'=>$cat['id']));
 
 		$categories_list = $db->select('*', 'categories', 'user_id=:uid AND lang=:lang', array(':uid'=>$_SESSION['user_id'], ':lang'=>$cat['lang']));
-		
+
 		$cookies = new Cookies();
 		$at = $cookies->get('autoTranslate');
-		
-		if(!$at || $at == 'true') {
-			
-			$autotranslate = '<button id="at-button" data-setting="on" class="btn btn-secondary at-on">AutoTłumacz: <span class="at-text">WŁ<span></button>';
-			
-			
-		} elseif(isset($at) && $at == 'false') {
-			
-			$autotranslate = '<button id="at-button" data-setting="off" class="btn btn-secondary at-off">AutoTłumacz: <span class="at-text">WYŁ</span></button>';
-			
-		}
-		
-		
 
-		$additional = $autotranslate . '<a style="margin-left: 5px;" href="' . Config::getHome() . '/?c=fiszki&a=check&id=' . $cat['id'] . '" class="btn btn-primary" role="button"><i class="fas fa-list"></i> Zobacz</a> <a style="margin-left: 5px;" id="removeCategory" href="' . Config::getHome() . '/?c=fiszki&a=remove&id=' . $cat['id'] . '" class="btn btn-danger" role="button"><i class="fas fa-trash"></i> Usuń</a>';
+		if(!$at || $at == 'true') {
+
+			$autotranslate = '<button id="at-button" data-setting="on" class="btn btn-secondary at-on">AutoTłumacz: <span class="at-text">WŁ<span></button>';
+
+
+		} elseif(isset($at) && $at == 'false') {
+
+			$autotranslate = '<button id="at-button" data-setting="off" class="btn btn-secondary at-off">AutoTłumacz: <span class="at-text">WYŁ</span></button>';
+
+		}
+
+
+
+		$additional = $autotranslate . '<a style="margin-left: 5px;" href="' . Config::getHome() . '/?c=fiszki&a=check&id=' . $cat['id'] . '" class="btn btn-primary" role="button"><i class="fas fa-list"></i> Zobacz</a> <a style="" id="removeCategory" href="' . Config::getHome() . '/?c=fiszki&a=remove&id=' . $cat['id'] . '" class="btn btn-danger" role="button"><i class="fas fa-trash"></i> Usuń</a>';
 
 		Render::Element('Title', array('title'=>'<div class="edit-element flex" data-min-length="3" data-max-length="150" data-id="' . $cat['id'] . '" data-type="categories" data-element="name" data-input="text">Edycja: <span class="edit-element-child edit-cat-name" style="padding-left: 10px;">' . $cat['name'] . '</span></div>', 'add'=>$additional));
 
@@ -55,7 +55,7 @@ class Edit_Action {
 				break;
 			case 'ru':
 				$lang_long = 'rosyjski';
-                break;            
+                break;
 			case 'it':
                 $lang_long = 'włoski';
                 break;
@@ -92,7 +92,7 @@ class Edit_Action {
 			}
 
 			?>
-			
+
 
 			<?php Render::Element('Fiszki_Add_List', array("id"=>1, "lang_long"=>$lang_long)); ?>
 
@@ -108,7 +108,7 @@ class Edit_Action {
 				        <h5 class="modal-title" id="exampleModalLongTitle">Zmień kategorię słówka</h5>
 				      </div>
 			      	<div class="modal-body">
-						
+
 			      		<select class="changeCatSelect" style="width: 100%">
 			      			<option disabled selected value="def">Wybierz kategorię</option>
 			      			<?php foreach($categories_list as $cat) { ?>
@@ -153,7 +153,7 @@ class Edit_Action {
 
 			for($i=0; $i<$count; $i++){
 
-				if(isset($_POST['pl'][$i]) && !empty($_POST['pl'][$i]) && 
+				if(isset($_POST['pl'][$i]) && !empty($_POST['pl'][$i]) &&
 					isset($_POST['fo'][$i]) && !empty($_POST['fo'][$i])) {
 
 					$binds .= '(NULL, :cat_id_' . $i . ', :lang_' . $i . ', :user_id_' . $i . ', :first_' . $i . ', :second_' . $i . ', :desc_' . $i . '), ';
@@ -176,7 +176,7 @@ class Edit_Action {
 
 			for($i=0; $i<$edit_count; $i++){
 
-				if(isset($_POST['pledit'][$i]) && !empty($_POST['pledit'][$i]) && 
+				if(isset($_POST['pledit'][$i]) && !empty($_POST['pledit'][$i]) &&
 					isset($_POST['foedit'][$i]) && !empty($_POST['foedit'][$i]) &&
 					isset($_POST['wordid'][$i]) && !empty($_POST['wordid'][$i])) {
 

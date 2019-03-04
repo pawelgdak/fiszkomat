@@ -108,7 +108,7 @@ class Template {
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 			<!-- Style -->
-			<link rel="stylesheet" href="<?php echo Config::getHome(); ?>/assets/css/styles.css">
+			<link rel="stylesheet" href="<?php echo Config::getHome(); ?>/assets/css/styles.css?v=<?php echo time(); ?>">
 
 			<!-- Animate -->
 			<link rel="stylesheet" href="<?php echo Config::getHome(); ?>/assets/css/animate.css">
@@ -122,6 +122,9 @@ class Template {
 
 			}
 			?>
+
+			<!-- Dexie -->
+			<script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
 
 			<!-- Notify -->
 			<script src="<?php echo Config::getHome(); ?>/assets/js/bootstrap-notify.min.js"></script>
@@ -140,8 +143,8 @@ class Template {
 
 			<!-- PWA -->
 			<meta name="apple-mobile-web-app-capable" content="yes" />
-			<link rel="apple-touch-icon" href="/favicon.ico">
-			<link href="/favicon.ico" rel="apple-touch-startup-image" />
+			<link rel="apple-touch-icon" href="/favicon-white-bg.ico">
+			<link href="/favicon-white-bg.ico" rel="apple-touch-startup-image" />
 			<meta name="apple-mobile-web-app-status-bar-style" content="default">
 			<meta name="apple-mobile-web-app-title" content="Fiszkomat">
 			<script type="text/javascript">

@@ -7,7 +7,7 @@ class Fiszki_Controller extends Template {
 	}
 
 	public function insertCustomJs() {
-		return $js = array(Config::get("Site/domain") . '/assets/js/fiszki.js');
+		return $js = array(Config::get("Site/domain") . '/assets/js/fiszki.js?v=' . time());
 	}
 
 	public function Titles() {

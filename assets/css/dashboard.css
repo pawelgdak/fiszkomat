@@ -176,6 +176,10 @@ a.category-edit-link {
     outline: none;
 }
 
+#removeCategory {
+    margin-left: 5px;
+}
+
 /*
 * Textarea
 */

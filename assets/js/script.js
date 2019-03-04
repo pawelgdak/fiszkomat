@@ -2,6 +2,84 @@ $(function() {
     $.get("functions/getConf.php", function(data) {
         let path = data;
 
+        function getUrlParameter(href, name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
+            var results = regex.exec(href);
+            return results === null
+                ? ""
+                : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        /* State manager */
+
+        let db = new Dexie("state_manager");
+        db.version(1).stores({
+            current: "setting, controller, action, href"
+        });
+
+        db.current
+            .get("primary")
+            .then(data => {
+                if (typeof data == "undefined") {
+                    db.current.add({
+                        setting: "primary",
+                        controller: "main",
+                        action: "",
+                        href: path
+                    });
+                } else {
+                    if (
+                        data.controller != "main" &&
+                        window.location.href == path + "/" &&
+                        data.action != "remove"
+                    ) {
+                        window.location = data.href;
+                    } else {
+                        let controller = getUrlParameter(
+                            window.location.href,
+                            "c"
+                        );
+                        let action = getUrlParameter(window.location.href, "a");
+
+                        if (action == "" && controller == "")
+                            controller = "main";
+
+                        db.current.update("primary", {
+                            controller: controller,
+                            action: action,
+                            href: window.location.href
+                        });
+                    }
+                }
+            })
+            .catch(error => {
+                console.error(error.stack || error);
+            });
+
+        $("a").click(function(e) {
+            updateStateLink(e, this);
+        });
+
+        let updateStateLink = (e, el) => {
+            e.preventDefault();
+
+            let controller = getUrlParameter(el.href, "c");
+            let action = getUrlParameter(el.href, "a");
+
+            if (action == "" && controller == "") controller = "main";
+
+            db.current
+                .update("primary", {
+                    controller: controller,
+                    action: action,
+                    href: el.href
+                })
+                .then(() => {
+                    window.location = el.href;
+                });
+        };
+
         /* Text to Speech */
         $(document).on("click", ".textToSpeech", function() {
             let text = $(this).attr("data-text");

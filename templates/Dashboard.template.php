@@ -6,8 +6,8 @@ class Dashboard extends Template {
 
 	public function __construct() {
 
-		$css = array(Config::get("Site/domain") . '/assets/css/dashboard.css', Config::get("Site/domain") . '/assets/css/dashboard-mobile.css', 'https://fonts.googleapis.com/css?family=Vollkorn+SC', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css');
-		$js = array(Config::get("Site/domain") . '/assets/js/script.js', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', 'https://code.responsivevoice.org/responsivevoice.js');
+		$css = array(Config::get("Site/domain") . '/assets/css/dashboard.css?v=' . time(), Config::get("Site/domain") . '/assets/css/dashboard-mobile.css?v=' . time(), 'https://fonts.googleapis.com/css?family=Vollkorn+SC', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css');
+		$js = array(Config::get("Site/domain") . '/assets/js/script.js?v=' . time(), 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js', 'https://code.responsivevoice.org/responsivevoice.js');
 		parent::insertCss($css);
 		parent::insertJs($js);
 

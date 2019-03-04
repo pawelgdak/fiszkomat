@@ -8,8 +8,12 @@ function dodajFiszkeInput() {
 	}
 
 	$fiszki = new Fiszki_Add_List_Element();
-	$fiszki->Render(array("id"=>$_POST['id'], "lang_long"=>$_POST['lang_long']));
-	
+	if(isset($_POST['count'])) {
+		for($i = $_POST['id']; $i < $_POST['count'] + 1; $i++) {
+			$fiszki->Render(array("id"=>$i, "lang_long"=>$_POST['lang_long']));
+		}
+	} else $fiszki->Render(array("id"=>$_POST['id'], "lang_long"=>$_POST['lang_long']));
+
 }
 
 function usunFiszke() {
@@ -37,13 +41,13 @@ function autoTranslate() {
 }
 
 function changeSettings() {
-	
+
 	if(!isset($_POST['type']) || empty($_POST['type']) || !isset($_POST['value']) || empty($_POST['value'])) exit;
-			
+
 	$cookies = new Cookies();
 	$cookies->update('NaukaSettings/' . $_POST['type'], $_POST['value']);
 	$cookies->save();
-	
+
 }
 
 function zmienKat() {
@@ -67,7 +71,7 @@ function zmienKat() {
 }
 
 //if(!isset($_SESSION['user_id'])) exit;
-	
+
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 	include('../init.php');
 	if($_POST['method'] == 'dodajInput') dodajFiszkeInput();
