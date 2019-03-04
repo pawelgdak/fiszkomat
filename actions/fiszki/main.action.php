@@ -1,6 +1,6 @@
 <?php
 
-class Main_Action {	
+class Main_Action {
 
 	public function Main() {
 
@@ -28,6 +28,17 @@ class Main_Action {
 
 		$cookies = new Cookies();
 		$lang = $cookies->getLang();
+
+		// Szukanie
+		?>
+
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Szukaj fiszki, kategorii.." id="flashcard-search" data-lang="<?php echo $lang; ?>" />
+		</div>
+
+
+		<?php
+
 		$db = new DB();
 		$rows = $db->select('id, name, description', 'categories', 'user_id=:uid AND lang=:lang ORDER BY edit_date DESC', array(":uid"=>$_SESSION['user_id'], ":lang"=>$lang));
 
@@ -41,7 +52,7 @@ class Main_Action {
 
 			?>
 
-			<li class="list-group-item list-group-item-action flex-column align-items-start fiszki-cat">
+			<li class="list-group-item list-group-item-action flex-column align-items-start fiszki-cat" data-name="<?php echo $row['name'] ?>">
 
 				<div class="d-flex w-100 justify-content-between">
 
@@ -50,12 +61,12 @@ class Main_Action {
 					<small><a class="category-edit-link" href="<?php echo Config::getHome(); ?>/?c=fiszki&a=edit&id=<?php echo $row['id']; ?>"><i class="fas fa-cog"></i> Edytuj</a>
 						&#8226;
 					<a style="color:black;" class="removeCategory" href="<?php echo Config::getHome() . '/?c=fiszki&a=remove&id=' . $row['id']; ?>" role="button"><i class="fas fa-trash"></i> Usuń</a></small>
-					
+
 
 				</div>
 
 				<p class="mb-1">
-					
+
 					<a href="<?php echo Config::getHome() . '/?c=nauka&a=all&id=' . $row['id']; ?>"><span class="badge badge-primary badge p-2 my-1" data-toggle="tooltip" data-placement="top" title="Nauka wszystkich dostępnych fiszek z tej kategorii.">Wszystkie: <strong><?php echo $db->policz('words', 'cat_id = :cat_id', array(":cat_id"=>$row['id'])); ?></strong></span></a>
 
 					<?php if($umiem) { ?>
@@ -84,7 +95,7 @@ class Main_Action {
 
 					<?php } else { ?>
 
-					<span class="badge badge-danger badge p-2 my-1" data-toggle="tooltip" data-placement="top" title="Nie masz słówek, które sprawiają Ci duży problem!">Naucz się: <strong><?php echo $naucz; ?></strong></span>					
+					<span class="badge badge-danger badge p-2 my-1" data-toggle="tooltip" data-placement="top" title="Nie masz słówek, które sprawiają Ci duży problem!">Naucz się: <strong><?php echo $naucz; ?></strong></span>
 
 					<?php } ?>
 
@@ -103,10 +114,10 @@ class Main_Action {
 			<?php
 
 		}
-    
+
     ?>
 
-    
+
 
       <li id="study-selected" class="list-group-item list-group-item-action flex-column align-items-start disabled">
 
@@ -119,7 +130,7 @@ class Main_Action {
 				</div>
 
 				<p class="mb-1">
-					
+
 					<a class="study-selected-button" href="<?php echo Config::getHome() . '/?c=nauka&a=all'; ?>"><span class="disabled badge badge-primary badge p-2 my-1" data-toggle="tooltip" data-placement="top" title="Nauka wszystkich dostępnych fiszek z tej kategorii.">Wszystkie</span></a>
 
 					<a class="study-selected-button" href="<?php echo Config::getHome() . '/?c=nauka&a=good'; ?>"><span class="disabled badge badge-success badge p-2 my-1" data-toggle="tooltip" data-placement="top" title="Powtórz sobie te fiszki, które już dobrze znasz.">Umiem</span></a>
@@ -129,7 +140,7 @@ class Main_Action {
 					<a class="study-selected-button" href="<?php echo Config::getHome() . '/?c=nauka&a=hardest'; ?>"><span class="disabled badge badge-danger badge p-2 my-1" data-toggle="tooltip" data-placement="top" title="Naucz się tych słówek, z którymi masz największy problem.">Naucz się</span></a>
 
 					<a class="study-selected-button" href="<?php echo Config::getHome() . '/?c=nauka&a=newf'; ?>"><span class="disabled badge badge-info badge p-2 my-1" data-toggle="tooltip" data-placement="top" title="Naucz się fiszek, których jeszcze się nie uczyłeś.">Nowe</span></a>
-					
+
 				</p>
 
 			</li>

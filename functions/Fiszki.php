@@ -16,6 +16,20 @@ function dodajFiszkeInput() {
 
 }
 
+function pobierzFiszki() {
+
+	if(!isset($_GET['lang']) || empty($_GET['lang'])) {
+		exit;
+	}
+
+	$db = new DB();
+	$data = $db->select('f.first, f.second, c.name', 'words f LEFT JOIN categories c ON c.id = f.cat_id', 'c.user_id = :id AND c.lang = :lang',
+				array(":id" => $_SESSION['user_id'], ":lang" => $_GET['lang']));
+
+	echo json_encode($data, true);
+
+}
+
 function usunFiszke() {
 
 	if(!isset($_POST['id']) || empty($_POST['id']) || !isset($_POST['lang']) || empty($_POST['lang'])) {
@@ -74,9 +88,14 @@ function zmienKat() {
 
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 	include('../init.php');
-	if($_POST['method'] == 'dodajInput') dodajFiszkeInput();
-	elseif($_POST['method'] == 'usunfiszke') usunFiszke();
-	elseif($_POST['method'] == 'zmienKat') zmienKat();
-	elseif($_POST['method'] == 'autoTranslate') autoTranslate();
-	elseif($_POST['method'] == 'changeSettings') changeSettings();
+	if(isset($_POST['method'])) {
+		if($_POST['method'] == 'dodajInput') dodajFiszkeInput();
+		elseif($_POST['method'] == 'usunfiszke') usunFiszke();
+		elseif($_POST['method'] == 'zmienKat') zmienKat();
+		elseif($_POST['method'] == 'autoTranslate') autoTranslate();
+		elseif($_POST['method'] == 'changeSettings') changeSettings();
+	} else if(isset($_GET['method'])) {
+		if($_GET['method'] == 'pobierzFiszki') pobierzFiszki();
+	}
+
 } else exit;
