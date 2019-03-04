@@ -32,7 +32,8 @@ $(function() {
                     if (
                         data.controller != "main" &&
                         window.location.href == path + "/" &&
-                        data.action != "remove"
+                        data.action != "remove" &&
+                        data.action != "logout"
                     ) {
                         window.location = data.href;
                     } else {
