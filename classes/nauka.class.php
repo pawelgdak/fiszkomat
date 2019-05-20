@@ -14,11 +14,11 @@ class Nauka {
 
 		if($words) {
 
-			$wordsJson = json_encode($words);
+			$wordsJson = htmlspecialchars(json_encode($words));
 
 			?>
 
-			<input type="hidden" id="naukaSlowka" value='<?php echo $wordsJson; ?>'>
+			<input type="hidden" id="naukaSlowka" value="<?php echo $wordsJson; ?>">
 			<input type="hidden" id="naukaTryb" value="<?php echo $mode ?>">
 
 			<div id="naukaModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
