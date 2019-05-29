@@ -31,7 +31,7 @@ class All_Action {
 
 		Jeśli nie wyskoczyło Ci okienko z nauką słówek, spróbuj odświeżyć stronę.
 
-		<?php Nauka::Create(array('title'=>'Wszystkie słówka', 'words'=>$rows, 'mode'=>'new')); ?>
+		<?php Nauka::Create(array('title'=>'Wszystkie słówka', 'words'=>$rows, 'mode'=>'all')); ?>
 
 		<?php
 

@@ -31,7 +31,7 @@ class Solid_Action {
 
 		Jeśli nie wyskoczyło Ci okienko z nauką słówek, spróbuj odświeżyć stronę.
 
-		<?php Nauka::Create(array('title'=>'Utrwal słówka', 'words'=>$rows, 'mode'=>'new')); ?>
+		<?php Nauka::Create(array('title'=>'Utrwal słówka', 'words'=>$rows, 'mode'=>'solid')); ?>
 
 		<?php
 

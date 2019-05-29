@@ -21,11 +21,18 @@ class IndexLI_Controller extends Template {
 
 		?>
 
-		Zalogowany jako
+		<h2>Strona główna</h2>
+
+		<p>Witaj <?php echo $_SESSION['user']; ?>! 
+		<?php echo $_SESSION['last_study'] ? 'Twoja ostatnia nauka miała miejsce ' . $_SESSION['last_study'] : ''; ?></p>
+
+		<div class="row mt-4">
+			<div class="col">
+				<a href="?c=jezyk" class="btn btn-primary btn-sm">Zmień język nauki</a>
+			</div>
+		</div>
 
 		<?php
-
-		echo $_SESSION['user'];
 
 
 	}

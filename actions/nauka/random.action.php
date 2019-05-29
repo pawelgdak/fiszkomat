@@ -18,7 +18,7 @@ class Random_Action {
 
 		Jeśli nie wyskoczyło Ci okienko z nauką słówek, spróbuj odświeżyć stronę.
 
-		<?php Nauka::Create(array('title'=>'Stare słówka', 'words'=>$rows, 'mode'=>'old')); ?>
+		<?php Nauka::Create(array('title'=>'Stare słówka', 'words'=>$rows, 'mode'=>'rand')); ?>
 
 		<?php
 

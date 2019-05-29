@@ -39,4 +39,15 @@ class MyAccount {
 
 	}
 
+	public static function GetUserData() {
+		$db = new DB();
+
+		$user_id = $_SESSION['user_id'];
+		$last_study = $db->select("last_time", "study", "user_id = :user_id ORDER BY last_time DESC LIMIT 0,1", array(":user_id" => $user_id), 'one')['last_time'];
+
+		if($last_study)
+			$_SESSION['last_study'] = $last_study;
+		else $_SESSION['last_study'] = false;
+	}
+ 
 }

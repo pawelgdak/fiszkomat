@@ -39,6 +39,7 @@ if(isset($_SESSION['logged'])) {
 
 	isset($_GET['c']) ? $page = $_GET['c'] : $page = 'indexLI';
 	Nauka::checkIfStudied();
+	MyAccount::GetUserData();
 
 } else isset($_GET['c']) ? $page = $_GET['c'] : $page = 'account';
 
