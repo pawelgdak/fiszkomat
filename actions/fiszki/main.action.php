@@ -4,7 +4,10 @@ class Main_Action {
 
 	public function Main() {
 
-		$additional = '<a href="' . Config::getHome() . '/?c=fiszki&a=add" class="btn btn-primary" role="button"><i class="fas fa-plus"></i> Dodaj nowe</a>';
+		$additional = '
+						<a href="' . Config::getHome() . '/?c=fiszki&a=add" class="btn btn-primary" role="button"><i class="fas fa-plus"></i> Dodaj nowe</a>
+						<a href="' . Config::getHome() . '/?c=fiszki&a=clone" class="ml-1 btn btn-secondary" role="button"><i class="fas fa-copy"></i> Sklonuj</a>
+					';
 
 		Render::Element('Title', array('title'=>'Moje fiszki', 'add'=>$additional));
 

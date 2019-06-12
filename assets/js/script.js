@@ -1,5 +1,5 @@
-$(function() {
-    $.get("functions/getConf.php", function(data) {
+$(function () {
+    $.get("functions/getConf.php", function (data) {
         let path = data;
 
         function getUrlParameter(href, name) {
@@ -35,7 +35,8 @@ $(function() {
                         data.action != "remove" &&
                         data.action != "logout"
                     ) {
-                        window.location = data.href;
+                        if (document.referrer == "")
+                            window.location = data.href;
                     } else {
                         let controller = getUrlParameter(
                             window.location.href,
@@ -58,7 +59,7 @@ $(function() {
                 console.error(error.stack || error);
             });
 
-        $("a").click(function(e) {
+        $("a").click(function (e) {
             updateStateLink(e, this);
         });
 
@@ -82,7 +83,7 @@ $(function() {
         };
 
         /* Text to Speech */
-        $(document).on("click", ".textToSpeech", function() {
+        $(document).on("click", ".textToSpeech", function () {
             let text = $(this).attr("data-text");
             let lang = $(this).attr("data-lang");
             let voice;
@@ -130,12 +131,12 @@ $(function() {
             var baseUrl = "assets/images/flags";
             var $state = $(
                 '<div style="display:flex; align-items: center;"><img src="' +
-                    baseUrl +
-                    "/" +
-                    state.element.value.toLowerCase() +
-                    '.png" class="img-flag" /> <span style="padding-left: 10px">' +
-                    state.text +
-                    "</span></div>"
+                baseUrl +
+                "/" +
+                state.element.value.toLowerCase() +
+                '.png" class="img-flag" /> <span style="padding-left: 10px">' +
+                state.text +
+                "</span></div>"
             );
             return $state;
         }
@@ -147,13 +148,13 @@ $(function() {
             templateResult: formatState
         });
 
-        $("#pick-language").on("select2:select", function(e) {
+        $("#pick-language").on("select2:select", function (e) {
             var SelectData = e.params.data;
 
             $.post(
                 "functions/setLanguage.php",
                 { data: JSON.stringify(SelectData) },
-                function(x) {
+                function (x) {
                     window.location = path + "?c=fiszki";
                 }
             );
@@ -164,7 +165,7 @@ $(function() {
         let inp = "";
         let inputType = "";
 
-        $(".edit-element").on("click", ".edit-element-child", function() {
+        $(".edit-element").on("click", ".edit-element-child", function () {
             oldName = $(this).text();
 
             if (!clicked) {
@@ -208,7 +209,7 @@ $(function() {
 
             $(this)
                 .parent()
-                .on("blur", inp, function() {
+                .on("blur", inp, function () {
                     let id = $(this)
                         .parent()
                         .parent()
@@ -260,7 +261,7 @@ $(function() {
                                     id: id,
                                     newName: newName
                                 },
-                                function(x) {
+                                function (x) {
                                     let data = JSON.parse(x);
 
                                     if (data.result == "done") {

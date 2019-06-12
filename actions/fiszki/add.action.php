@@ -61,7 +61,7 @@ class Add_Action {
 		$lang = $cookies->getLang();
 
 		$db = new DB();
-		$db -> insert('categories', 'id, lang, user_id, name, description', 'NULL, :lang, :uid, :name, :description', array(":lang"=>$lang, ":uid"=>$_SESSION['user_id'], ":name"=>$name, "description"=>$desc));
+		$db -> insert('categories', 'id, lang, user_id, name, description', 'NULL, :lang, :uid, :name, :description', array(":lang"=>$lang, ":uid"=>$_SESSION['user_id'], ":name"=>$name, ":description"=>$desc));
 
         $id = $db->lastId();
         

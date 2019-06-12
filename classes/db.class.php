@@ -2,7 +2,7 @@
 
 class DB {
 
-    private $db;
+    public $db;
 
     public function __construct() {
 
@@ -22,6 +22,10 @@ class DB {
             $sth = $this->db -> prepare('INSERT INTO ' . $table . ' ( ' . $columns . ' ) VALUES (' . $binds . ')');
         else $sth = $this->db -> prepare('INSERT INTO ' . $table . ' ( ' . $columns . ' ) VALUES ' . $binds . '');
         $sth -> execute($values);
+
+        echo "\nPDOStatement::errorInfo():\n";
+$arr = $sth->errorInfo();
+print_r($arr);
 
     }
 
@@ -126,7 +130,7 @@ class DB {
 
     public function update($table, $binds, $values = '', $where = false) {
 
-        if(!$where)
+        if(!$where) 
             $sth = $this->db->prepare('UPDATE ' . $table . ' SET ' . $binds);
         else $sth = $this->db->prepare('UPDATE ' . $table . ' SET ' . $binds . ' WHERE ' . $where);
 

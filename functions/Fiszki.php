@@ -84,6 +84,37 @@ function zmienKat() {
 
 }
 
+function resetCode() {
+
+	if(!isset($_POST['cat']) || empty($_POST['cat'])) {
+		echo '{"result":false}';
+		exit;
+	}
+
+	$db = new DB();
+
+	if(!$db->checkIfOwner('categories', $_POST['cat'], $_SESSION['user_id'])) {
+		echo '{"result":false}';
+		exit;
+	}
+
+	$newCode = md5($_POST['cat'] . sha1(rand() * 10));
+
+	try {
+
+		$sth = $db->db->prepare('UPDATE categories SET `clone-code` = :code WHERE id = :cat');
+		$sth->execute(array(":code"=>$newCode, ":cat"=>$_POST['cat']));
+
+		echo '{"result":true, "cloneCode":"'.$newCode.'"}';
+
+	} catch (PDOException $e) {
+		
+		echo '{"result":false}';
+
+	}
+
+}
+
 //if(!isset($_SESSION['user_id'])) exit;
 
 if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
@@ -94,6 +125,7 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
 		elseif($_POST['method'] == 'zmienKat') zmienKat();
 		elseif($_POST['method'] == 'autoTranslate') autoTranslate();
 		elseif($_POST['method'] == 'changeSettings') changeSettings();
+		elseif($_POST['method'] == 'resetCode') resetCode();
 	} else if(isset($_GET['method'])) {
 		if($_GET['method'] == 'pobierzFiszki') pobierzFiszki();
 	}

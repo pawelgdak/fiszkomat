@@ -15,7 +15,10 @@ class Check_Action {
 		}
 
 		$cat = $db->select('*', 'categories', 'id=:id', array(":id"=>$_GET['id']), 'one');
-		$additional = '<a href="' . Config::getHome() . '/?c=fiszki&a=edit&id=' . $cat['id'] . '" class="btn btn-primary" role="button"><i class="fas fa-cog"></i> Edytuj</a>';
+		$additional = '
+			<a href="' . Config::getHome() . '/?c=fiszki&a=edit&id=' . $cat['id'] . '" class="btn btn-primary" role="button"><i class="fas fa-cog"></i> Edytuj</a>
+			<button type="button" class="ml-1 btn btn-secondary" data-toggle="modal" data-target="#clone-modal"><i class="fas fa-copy"></i> Kod klonowania</button>
+		';
 
 		Render::Element('Title', array('title'=>$cat['name'], 'add'=>$additional));
 
@@ -48,6 +51,32 @@ class Check_Action {
 		<p class="small">
 			Słówka sortowane są według poziomu znajomości. Lepiej znane słówka są na dole.
 		</p>
+
+
+		<div id="clone-modal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Kod do klonowania</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>Każda osoba posiadająca <strong>kod klonowania</strong> może sklonować tą kategorię. W każdej chwili możesz zresetować kod.</p>
+
+						<div class="input-group mb-3">
+							<input type="hidden" value="<?php echo $cat['id']; ?>" name="cat-id" />
+							<input name="clone-code-input" type="text" class="form-control" value="<?php echo $cat['clone-code']; ?>" placeholder="Zresetuj, aby utworzyć" aria-label="Kod klonowania" aria-describedby="reset-button" disabled>
+							<div class="input-group-append">
+								<button class="btn btn-secondary" id="reset-button">Zresetuj kod</button>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Zamknij</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<?php
 

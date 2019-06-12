@@ -77,7 +77,7 @@ db.current.get("primary").then(data => {
                 lang_long: lang_long,
                 count: data.flashcards.new.length
             },
-            function(x) {
+            function (x) {
                 $("#fiszki").append(x);
 
                 data.flashcards.new.forEach(el => {
@@ -95,8 +95,8 @@ db.current.get("primary").then(data => {
 
                 $(
                     "input[name='pl[]'][data-id='" +
-                        parseInt(data.flashcards.new.length) +
-                        "']"
+                    parseInt(data.flashcards.new.length) +
+                    "']"
                 ).focus();
             }
         );
@@ -343,7 +343,7 @@ setInterval(() => {
         new: [],
         cat_id: $("input[name='cat_id']").val()
     };
-    $(".input-pl-edit").each(function() {
+    $(".input-pl-edit").each(function () {
         let id = $(this)
             .parent()
             .find("input[name='wordid[]']")
@@ -362,7 +362,7 @@ setInterval(() => {
         flashcards.old.push({ id, pl, fr, notes });
     });
 
-    $(".input-pl").each(function() {
+    $(".input-pl").each(function () {
         let id = $(this).attr("data-id");
         let notes = $(this)
             .parent()
@@ -397,7 +397,7 @@ if (
     typeof $("#flashcard-search") != "undefined" &&
     $("#flashcard-search").length > 0
 ) {
-    $("#flashcard-search").on("keyup paste", function() {
+    $("#flashcard-search").on("keyup paste", function () {
         let text = $(this).val();
 
         $(".fiszki-cat[data-name]").hide();
@@ -427,7 +427,7 @@ if (
     });
 
     let lang = $("#flashcard-search").attr("data-lang");
-    $.get("functions/Fiszki.php?method=pobierzFiszki&lang=" + lang, function(
+    $.get("functions/Fiszki.php?method=pobierzFiszki&lang=" + lang, function (
         x
     ) {
         fiszki_data = JSON.parse(x);
@@ -440,7 +440,7 @@ if (
     });
 }
 
-$(".fiszki-cat").on("click", function() {
+$(".fiszki-cat").on("click", function () {
     let catid = $(this)
         .find(".category-name")
         .attr("cat-id");
@@ -455,7 +455,7 @@ $(".fiszki-cat").on("click", function() {
     }
 });
 
-$("#fiszki").on("blur", ".input-pl", function() {
+$("#fiszki").on("blur", ".input-pl", function () {
     let setting = $("#at-button");
 
     let value = $(this).val();
@@ -474,7 +474,7 @@ $("#fiszki").on("blur", ".input-pl", function() {
             $.post(
                 "functions/translate.php",
                 { lang: lang, value: value },
-                function(x) {
+                function (x) {
                     let data = JSON.parse(x);
 
                     if (data.error == "false") {
@@ -488,7 +488,7 @@ $("#fiszki").on("blur", ".input-pl", function() {
     }
 });
 
-$("#fiszki").on("blur", ".input-pl-edit", function() {
+$("#fiszki").on("blur", ".input-pl-edit", function () {
     let setting = $("#at-button");
 
     if (
@@ -502,7 +502,7 @@ $("#fiszki").on("blur", ".input-pl-edit", function() {
             $.post(
                 "functions/translate.php",
                 { lang: lang, value: value },
-                function(x) {
+                function (x) {
                     let data = JSON.parse(x);
 
                     if (data.error == "false") {
@@ -523,27 +523,27 @@ function nowaFiszka() {
     $.post(
         "functions/Fiszki.php",
         { method: "dodajInput", id: i, lang_long: lang_long },
-        function(x) {
+        function (x) {
             $("#fiszki").append(x);
         }
     );
 }
 
-$("#fiszki").on("click", ".add-note", function() {
+$("#fiszki").on("click", ".add-note", function () {
     let notesId = $(this).attr("data-id");
     $('textarea[data-id="' + notesId + '"]').css("display", "block");
 });
 
-$("#fiszki").on("click", ".edit-note", function() {
+$("#fiszki").on("click", ".edit-note", function () {
     let notesId = $(this).attr("data-edit-id");
     $('textarea[data-edit-id="' + notesId + '"]').css("display", "block");
 });
 
-$("#saveFlashcards").click(function() {
+$("#saveFlashcards").click(function () {
     $("#fiszki").submit();
 });
 
-$("#fiszki").on("click", ".remove-flashcard", function() {
+$("#fiszki").on("click", ".remove-flashcard", function () {
     let fiszkaId = $(this).attr("data-edit-id");
     let elId = $(this).attr("data-obj-id");
 
@@ -551,14 +551,14 @@ $("#fiszki").on("click", ".remove-flashcard", function() {
         $.post(
             "functions/Fiszki.php",
             { method: "usunfiszke", id: fiszkaId, lang: lang },
-            function(x) {
+            function (x) {
                 $('li[data-id="' + elId + '"]').remove();
             }
         );
     }
 });
 
-$(".removeCategory").on("click", function(e) {
+$(".removeCategory").on("click", function (e) {
     let link = $(this).attr("href");
     e.preventDefault();
 
@@ -567,7 +567,7 @@ $(".removeCategory").on("click", function(e) {
     }
 });
 
-$("#at-button").on("click", function() {
+$("#at-button").on("click", function () {
     let setting = $(this).attr("data-setting");
     let setTo;
 
@@ -594,41 +594,41 @@ $("#at-button").on("click", function() {
     $.post(
         "functions/Fiszki.php",
         { method: "autoTranslate", setting: setTo },
-        function(x) {}
+        function (x) { }
     );
 });
 
-$(function() {
+$(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
 
 $(".changeCatSelect").select2();
 
-$(".study-selected-button").on("click", function(e) {
+$(".study-selected-button").on("click", function (e) {
     e.preventDefault();
     $(this).attr("href", $(this).attr("href") + "&id=");
     let that = $(this);
 
-    categories.forEach(function(cat) {
+    categories.forEach(function (cat) {
         that.attr("href", that.attr("href") + cat + ",");
     });
 
     window.location = $(this).attr("href");
 });
 
-$(".change-cat").on("click", function() {
+$(".change-cat").on("click", function () {
     let wordId = $(this).attr("data-change-id");
     let that = $(this);
 
     $("#changeCatModal").modal("toggle");
 
-    $(".changeCatSelect").on("change", function() {
+    $(".changeCatSelect").on("change", function () {
         let catId = $(this).val();
 
         $.post(
             "functions/Fiszki.php",
             { method: "zmienKat", id: wordId, cat: catId },
-            function(x) {
+            function (x) {
                 let data = JSON.parse(x);
                 if (data.result) {
                     that.parent()
@@ -644,3 +644,16 @@ $(".change-cat").on("click", function() {
         );
     });
 });
+
+$("#reset-button").click(function () {
+
+    let cat = $("input[name='cat-id']").val();
+
+    $.post("functions/Fiszki.php", { method: "resetCode", cat }).done(function (data) {
+        let res = JSON.parse(data);
+
+        if (res.result == true)
+            $("input[name='clone-code-input']").val(res.cloneCode);
+    })
+
+})
