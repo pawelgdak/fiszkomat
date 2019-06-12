@@ -1,10 +1,10 @@
 <?php
 
-class Clone_Action {
+class CloneCat_Action {
 
 	public $error_text;
 	
-	public function Clone() {
+	public function CloneCat() {
 
 		if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['clonecat'] == "true") {
 		  

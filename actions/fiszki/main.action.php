@@ -6,7 +6,7 @@ class Main_Action {
 
 		$additional = '
 						<a href="' . Config::getHome() . '/?c=fiszki&a=add" class="btn btn-primary" role="button"><i class="fas fa-plus"></i> Dodaj nowe</a>
-						<a href="' . Config::getHome() . '/?c=fiszki&a=clone" class="ml-1 btn btn-secondary" role="button"><i class="fas fa-copy"></i> Sklonuj</a>
+						<a href="' . Config::getHome() . '/?c=fiszki&a=clonecat" class="ml-1 btn btn-secondary" role="button"><i class="fas fa-copy"></i> Sklonuj</a>
 					';
 
 		Render::Element('Title', array('title'=>'Moje fiszki', 'add'=>$additional));
