@@ -10,7 +10,7 @@ class CloneCat_Action {
 		  
 			if(!isset($_POST['cloneCode']) || empty($_POST['cloneCode']) || !isset($_POST['name']) || empty($_POST['name']) || !isset($_POST['lang']) || empty($_POST['lang'])) {
 				$this->error_text = 'Musisz wypełnić wszystkie pola!';
-			} else $this -> CloneCat($_POST['cloneCode'], $_POST['name'], $_POST['lang']);
+			} else $this -> CloneCategory($_POST['cloneCode'], $_POST['name'], $_POST['lang']);
 		
 		}
 
@@ -63,7 +63,7 @@ class CloneCat_Action {
 
 	}
 
-	private function CloneCat($code, $name, $lang) {
+	private function CloneCategory($code, $name, $lang) {
 
 		$db = new DB();
 
